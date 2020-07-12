@@ -18,20 +18,27 @@ $username = "Toshyo"
 
 
     
-    <?php
+<?php
+session_start();
 $dir    = 'products';
 $files1 = scandir($dir);
 
+$currency = "$";
+
 for($i = 2; $i<count($files1); $i++){
     
-    $file = file_get_contents("products/" . $files1[$i] . "/name.txt");
-    echo $file;
+    $name = file_get_contents("products/" . $files1[$i] . "/name.txt");
+    echo $name;
+
+    $price = file_get_contents("products/" . $files1[$i] . "/price.txt");
 
     echo "<br>";
     echo "<img id=\"cover\" src=\"products/" . $files1[$i] . "/img/1.png\">";
     echo "<br>";
-    echo "<br>";
+    echo "<button>" . $currency . $price . "</button>";
+    echo "<a href='product.php?id=" . $files1[$i] . "'><button>" . "More" . "</button></a>";
 
+    echo "<br>";
 }
 ?>
 
